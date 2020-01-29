@@ -1,0 +1,162 @@
+﻿<Page x:Class="SystemePAC.Views.Controls.ConfigPages.ConfigMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:util="clr-namespace:SystemePAC.Help.Language"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="ConfigMenuPage">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+    <Grid>
+        <materialDesign:DialogHost DialogClosing="DialogHost_DialogClosing"                                   
+                                   Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+                                   DialogMargin="8">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24" />
+                            <RowDefinition />
+                            <RowDefinition Height="16" />
+                            <RowDefinition />
+                            <RowDefinition Height="16" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="128" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="0,0,10,0"
+                   Content="{util:Localization Date}"
+                   HorizontalAlignment="Right" />
+                        <DatePicker Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10,0,0,0"
+                        HorizontalAlignment="Left"
+                        SelectedDate="{Binding DmDate, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="0,0,10,0"
+                   Content="{util:Localization FoodProducts}"
+                   HorizontalAlignment="Right" />
+                        <Grid Grid.Row="3"
+                  Grid.Column="1"
+                  Margin="10,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="128" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ListView Name="LvAllItems"
+                          Grid.Column="0"
+                          VerticalAlignment="Stretch"
+                          VerticalContentAlignment="Stretch">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name"
+                                            DisplayMemberBinding="{Binding MiName}"
+                                            Width="200" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Margin="20,0,20,0">
+                                <Button Content="Add"
+                            Click="BtnAddItem_Click"
+                            />
+                                <TextBlock Height="24"
+                               Background="Transparent" />
+                                <Button Content="Remove"
+                            Click="BtnRemoveItem_Click"
+                            />
+                            </StackPanel>
+                            <ListView Name="LvSelectedItems"
+                          Grid.Column="2"
+                          VerticalAlignment="Stretch"
+                          VerticalContentAlignment="Stretch">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name"
+                                            DisplayMemberBinding="{Binding MiName}"
+                                            Width="200" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Click="BtnConfirmation_Click"
+                            IsDefault="True" Margin="0 8 8 0" Command="materialDesign:DialogHost.CloseDialogCommand" Content="{util:Localization Accept}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True" Margin="0 8 8 0"
+                            Command="materialDesign:DialogHost.CloseDialogCommand" Content="{util:Localization Cancel}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            <Border BorderThickness="1"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    ClipToBounds="True"
+                    HorizontalAlignment="Stretch">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Name="LvDailyMenu"
+                  VerticalAlignment="Stretch"
+                  VerticalContentAlignment="Stretch">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{util:Localization Date}"
+                                    DisplayMemberBinding="{Binding DmDate, StringFormat={}{0:dd/MM/yyyy}}"
+                                    Width="200" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                        <TextBlock Margin="16">Daily Menu Items</TextBlock>
+                    </materialDesign:ColorZone>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="BtnCreate_Click"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Grid.Row="0" Margin="0 0 144 -20">
+                        <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="BtnEdit_Click"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Grid.Row="0" Margin="0 0 78 -20">
+                        <materialDesign:PackIcon Kind="Edit" Height="24" Width="24" />
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Click="BtnDelete_Click"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Grid.Row="0" Margin="0 0 16 -20">
+                        <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+                    </Button>
+                </Grid>
+            </Border>
+        </materialDesign:DialogHost>
+    </Grid>
+</Page>

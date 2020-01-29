@@ -1,0 +1,8 @@
+2019-04-15 12:47:08,668 [5] INFO SystemePAC.App - The user Ben Ten has logged with success
+2019-04-15 12:47:41,969 [1] DEBUG SystemePAC.App - LogsPage
+2019-04-15 12:48:12,812 [1] DEBUG SystemePAC.App - LogsPage
+2019-04-15 12:49:07,096 [1] INFO SystemePAC.App - Confirmation succeded
+2019-04-15 12:49:07,320 [1] INFO SystemePAC.App - The user Ben Ten has log out
+2020-01-07 12:25:42,002 [5] INFO SystemePAC.App - The user Ben Ten has logged with success
+2020-01-07 12:26:59,996 [1] INFO SystemePAC.App - Confirmation succeded
+2020-01-07 12:27:00,185 [1] INFO SystemePAC.App - The user Ben Ten has log out

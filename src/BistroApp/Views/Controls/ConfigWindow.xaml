@@ -1,0 +1,52 @@
+﻿<Window x:Class="SystemePAC.Views.Controls.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:SideMenu.Controls;assembly=SideMenu"
+        xmlns:util="clr-namespace:SystemePAC.Help.Language"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        WindowStartupLocation="CenterOwner"
+        Icon="pack://application:,,,/Resources/bistroIcon.ico"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <controls:SideMenu Grid.Column="0" Width="320" Title="Configuration">
+            <controls:SideMenu.Items>
+                <controls:LabelMenuItem Text="{util:Localization Dashboard}"/>
+                <controls:ClickableMenuItem Icon="pack://application:,,,/Resources/Home.png"
+                                            IsChecked="True"
+                                            Text="{util:Localization Home}" 
+                                            Click="Home_Click"
+                                            />
+                <controls:ClickableMenuItem Icon="pack://application:,,,/Resources/menu.png"
+                                            IsChecked="False"
+                                            Text="{util:Localization Menu}" 
+                                            Click="Menu_Click"
+                                            />
+                <controls:ClickableMenuItem Icon="pack://application:,,,/Resources/foodItem.png"
+                                            IsChecked="False"
+                                            Text="{util:Localization FoodItem}" 
+                                            Click="FoodItem_Click"
+                                            />
+                <controls:ClickableMenuItem Icon="pack://application:,,,/Resources/search.png"
+                                            Text="{util:Localization Logs}" Checked="Logs_Click" />
+                <controls:SeparatorMenuItem />
+                <controls:LabelMenuItem Text="{util:Localization More}" />
+                <controls:ClickableMenuItem Icon="pack://application:,,,/Resources/person.png"
+                                            Text="{util:Localization User}" />
+            </controls:SideMenu.Items>
+            <controls:SideMenu.BarItems>
+                <controls:BarButtonMenuItem Icon="pack://application:,,,/Resources/reload.png" />
+            </controls:SideMenu.BarItems>
+        </controls:SideMenu>
+        <Border Grid.Column="1" Margin="0,50,0,0" BorderThickness="1" BorderBrush="Gray"/>
+        <Frame Grid.Column="2" x:Name="ConfigFrame" Margin="10" NavigationUIVisibility="Hidden" Panel.ZIndex="1"/>
+    </Grid>
+</Window>

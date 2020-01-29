@@ -1,0 +1,173 @@
+﻿<Page x:Class="SystemePAC.Views.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:util="clr-namespace:SystemePAC.Help.Language"
+      xmlns:help="clr-namespace:SystemePAC.Help"
+      xmlns:convertors="clr-namespace:SystemePAC.Help.Convertors"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage"
+      Name="This"
+      >
+    <Page.Resources>
+        <convertors:ImageFromByteArrayConverter x:Key="ImageFromByteArrayConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button HorizontalAlignment="Left" Margin="0,0,10,0" Height="32" Style="{StaticResource MaterialDesignRaisedLightButton}" BorderThickness="0" Visibility="{Binding IsModeAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding ConfigClickCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="pack://application:,,,/Resources/config.png" Stretch="UniformToFill" Focusable="false" IsHitTestVisible="false"/>
+                        <Label Content="{util:Localization Configuration}" HorizontalAlignment="Center" Padding="0,0,5,3" Focusable="False" IsHitTestVisible="false"/>
+                    </StackPanel>
+                </Button>
+                <Label Grid.Row="0"
+                       Content="{Binding Path=UserName, FallbackValue='John Doe'}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Margin="0,0,10,0"
+                       Foreground="Gray"
+                       FontWeight="Bold"
+                       FontSize="16" />
+                <Button Style="{StaticResource MaterialDesignRaisedLightButton}" 
+                        Background="Transparent" 
+                        Margin="10,0,10,0" 
+                        Content="{Binding AppLanguage, FallbackValue='En'}"
+                        Command="{Binding LanguageClickCommand}"
+                        Width="48"
+                        />
+                <materialDesign:Badged Badge="{Binding CartItemsCount, FallbackValue=0}" BadgeColorZoneMode="PrimaryDark" Margin="0,5,0,0">
+                    <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Command="{Binding ElementName=This, Path=DataContext.BasketClickCommand}">
+                        <Image Grid.Row="0" Grid.RowSpan="2" Source="pack://application:,,,/Resources/basket.png" Stretch="UniformToFill"/>
+                    </Button>
+                </materialDesign:Badged>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="59.7"/>
+                <ColumnDefinition Width="140.3"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Width="200" Margin="0,0,0,39.6" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Button Height="200" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Margin="5"
+                        Background="{DynamicResource MaterialDesignPaper}"
+                        Command="{Binding ElementName=This, Path=DataContext.FoodCategoriesClickCommand}" CommandParameter="{x:Static help:FoodCategory.Cooked}" BorderThickness="0">
+                    <Grid>
+                        <Image Source="pack://application:,,,/Resources/platDuJour.png" Stretch="Fill"/>
+                    </Grid>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Height="200"
+                        Margin="5"
+                        Background="{DynamicResource MaterialDesignPaper}"
+                        Command="{Binding ElementName=This, Path=DataContext.FoodCategoriesClickCommand}" CommandParameter="{x:Static help:FoodCategory.Snack}" BorderThickness="0">
+                    <Grid>
+                        <Image Source="pack://application:,,,/Resources/snack.png" Stretch="Fill"/>
+                    </Grid>
+                </Button>
+                <Button Height="200"
+                        Margin="5"
+                        Background="{DynamicResource MaterialDesignPaper}"
+                        Command="{Binding ElementName=This, Path=DataContext.FoodCategoriesClickCommand}" CommandParameter="{x:Static help:FoodCategory.Beverage}" BorderThickness="0">
+                    <Grid>
+                        <Image Source="pack://application:,,,/Resources/beverage.png" Stretch="Fill"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+            <ListBox Name="Lst" ItemsSource="{Binding FoodProductsCollection}" Grid.Column="2" Margin="0,0,0,39.6" Grid.RowSpan="2">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="MaxWidth" Value="300" />
+                        <Setter Property="MaxHeight" Value="300" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right" Padding="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="24" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding MiImage, Converter={StaticResource ImageFromByteArrayConverter}}" Stretch="UniformToFill" />
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" FontSize="14" Text="{Binding MiName,FallbackValue=''}" VerticalAlignment="Bottom"/>
+                                    <TextBlock Grid.Column="1"
+                                           FontSize="14"
+                                           Text="{Binding MiPrice,FallbackValue='', StringFormat={}{0:C}}"
+                                           VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"
+                                           />
+
+                                    <Button 
+                                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Margin="5,2,5,0"
+                                        materialDesign:RippleAssist.IsCentered="True"
+                                        Content="{util:Localization Add}" 
+                                        Click="BtnAddClick" 
+                                        Tag="{Binding}"/>
+                                </Grid>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid Grid.Row="1" Grid.Column="2" Margin="0,5.4,0,-0.4">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Label Content="{util:Localization TotalPrice}" VerticalAlignment="Center" Foreground="Green" FontWeight="Bold" FontSize="16"/>
+                    <Label Content="{Binding TotalPrice,FallbackValue=''}"
+                           ContentStringFormat="{}{0:C}"
+                           VerticalAlignment="Center"
+                           Foreground="Red"
+                           FontWeight="Bold"
+                           FontSize="16" />
+                    <CheckBox Content="{util:Localization Refund}" VerticalAlignment="Center" IsChecked="{Binding IsRefundChecked,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsModeAdmin, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Button Content="{util:Localization Confirmation}"
+                            Width="144"
+                            VerticalAlignment="Stretch"
+                            Margin="24,2,24,2" 
+                            Command="{Binding ElementName=This, Path=DataContext.ConfirmClickCommand}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,17 @@
+D:\School\bistro-app\src\bin\SideMenu.dll
+D:\School\bistro-app\src\bin\SideMenu.pdb
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\Generic.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\Theme.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu_MarkupCompile.cache
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu_MarkupCompile.lref
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\BarButtonMenuItem.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\ClickableMenuItem.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\LabelMenuItem.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\SideMenu.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\Themes\SeparatorMenuItem.baml
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu.g.resources
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu.csproj.CoreCompileInputs.cache
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu.dll
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu.pdb
+D:\School\bistro-app\src\SideMenu\obj\Debug\SideMenu.csprojAssemblyReference.cache

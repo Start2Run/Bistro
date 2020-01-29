@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:SideMenu.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SideMenu;component/Themes/Theme.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style TargetType="{x:Type controls:ClickableMenuItem}">
+        <Setter Property="GroupName" Value="SideMenuGroup" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ClickableMenuItem}">
+                    <RadioButton Height="35"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Stretch"
+                                 Background="Transparent"
+                                 BorderBrush="Transparent"
+                                 BorderThickness="0"
+                                 Command="{TemplateBinding Command}"
+                                 CommandParameter="{TemplateBinding CommandParameter}"
+                                 GroupName="{TemplateBinding GroupName}"
+                                 IsChecked="{TemplateBinding IsChecked}">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="{x:Type RadioButton}">
+                                <Border x:Name="Bd"
+                                        Margin="10,0,0,0"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="2">
+                                    <StackPanel Margin="5,0"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Orientation="Horizontal">
+                                        <Rectangle Width="19"
+                                                   Height="19"
+                                                   VerticalAlignment="Center"
+                                                   Fill="{StaticResource Blue1Brush}"
+                                                   SnapsToDevicePixels="True"
+                                                   UseLayoutRounding="True">
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush ImageSource="{Binding Path=Icon, RelativeSource={RelativeSource AncestorType={x:Type controls:ClickableMenuItem}}}"
+                                                            RenderOptions.BitmapScalingMode="HighQuality"
+                                                            Stretch="Uniform" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                        <controls:OutlinedTextBlock Margin="10,0,0,0"
+                                                                    VerticalAlignment="Center"
+                                                                    Fill="{StaticResource White1Brush}"
+                                                                    FontFamily="/SideMenu;component/Assets/#Work Sans SemiBold"
+                                                                    FontSize="11"
+                                                                    Stroke="#2000"
+                                                                    Text="{Binding Path=Text, RelativeSource={RelativeSource AncestorType={x:Type controls:ClickableMenuItem}}}"
+                                                                    UseLayoutRounding="False" />
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="#1F26A0DA" />
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="#3D26A0DA" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

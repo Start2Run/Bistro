@@ -1,0 +1,7 @@
+D:\School\bistro-app\src\bin\Common.dll
+D:\School\bistro-app\src\bin\Common.pdb
+D:\School\bistro-app\src\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\School\bistro-app\src\Common\obj\Debug\Common.dll
+D:\School\bistro-app\src\Common\obj\Debug\Common.pdb
+D:\School\bistro-app\src\Common\obj\Debug\Common.csprojAssemblyReference.cache
+D:\School\bistro-app\src\Common\obj\Debug\Common.csproj.CopyComplete

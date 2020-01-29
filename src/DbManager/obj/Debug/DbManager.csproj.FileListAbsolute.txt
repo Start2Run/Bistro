@@ -1,0 +1,11 @@
+D:\School\bistro-app\src\bin\x86\e_sqlite3.dll
+D:\School\bistro-app\src\bin\x64\e_sqlite3.dll
+D:\School\bistro-app\src\bin\DbManager.dll.config
+D:\School\bistro-app\src\bin\DbManager.dll
+D:\School\bistro-app\src\bin\DbManager.pdb
+D:\School\bistro-app\src\DbManager\obj\Debug\DbManager.dll.config
+D:\School\bistro-app\src\DbManager\obj\Debug\DbManager.csproj.CoreCompileInputs.cache
+D:\School\bistro-app\src\DbManager\obj\Debug\DbManager.csproj.CopyComplete
+D:\School\bistro-app\src\DbManager\obj\Debug\DbManager.dll
+D:\School\bistro-app\src\DbManager\obj\Debug\DbManager.pdb
+D:\School\bistro-app\src\DbManager\obj\Debug\DbManager.csprojAssemblyReference.cache
